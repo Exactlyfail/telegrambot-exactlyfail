@@ -6,8 +6,38 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 
 // bot.start((ctx) => ctx.reply('Welcome')); // тут стрелочна функція. ctx- це контекст      ctx.reply - це оправка повідомлення ('Welcome') - і в дужках вказується текст
 //bot.start((ctx) => console.log(ctx.message)) // при старті появляється інфорамія о пользувателі
+
 bot.start((ctx) => ctx.reply(`Привіт ${ctx.message.from.first_name ? ctx.message.from.first_name : 'додік без імені'}!`));
 bot.help((ctx) => ctx.reply(text.commands));
+
+bot.on('voice', ctx => {
+    ctx.reply('Какой чудный голос')
+})
+
+bot.on('sticker', ctx => {
+    ctx.reply('Прикольный стикер')
+})
+
+bot.on('edited_message', ctx => {
+    ctx.reply('Ви успішно редагували повідомлення')
+})
+
+bot.hears('хочу піцу',ctx => {
+    ctx.reply('Хотіти не шкідливо')
+})
+
+bot.hears('Хочу піцу',ctx => {
+    ctx.reply('Хотіти не шкідливо')
+})
+
+bot.hears('Привіт',ctx => {
+    ctx.reply('Велком ту зе клаб баді')
+})
+
+bot.command('time', ctx => {
+    ctx.reply(String(new Date()))
+})
+
 
 // обработка команд
 bot.command('course', async (ctx)=>{
